@@ -1,25 +1,23 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Menu, Phone } from "lucide-react";
+import { Menu, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import logo from "@/assets/logo.png";
 
-const navLinks = [
-  { href: "#servicios", label: "Servicios" },
-  { href: "#ventajas", label: "Ventajas" },
-  { href: "/contacto", label: "Contacto" },
+const serviceLinks = [
+  { href: "/vidrios", label: "Vidrios / Espejos" },
+  { href: "/pvc-aluminio", label: "PVC / Aluminio" },
+  { href: "/mamparas", label: "Mámparas de Baño" },
 ];
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isServicesHovered, setIsServicesHovered] = useState(false);
   const location = useLocation();
-  const isHome = location.pathname === "/";
-
-  // Force dark header if not on home
-  const isDarkInfo = isScrolled || !isHome;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,33 +35,74 @@ export const Header = () => {
     >
       <div className="container flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
-        <a href="/" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img
             src={logo}
             alt="Cristalería Las Rozas"
             className="h-10 md:h-12 w-auto"
           />
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="font-medium transition-colors hover:text-primary text-foreground"
+          {/* Servicios Dropdown with Hover */}
+          <div
+            className="relative"
+            onMouseEnter={() => setIsServicesHovered(true)}
+            onMouseLeave={() => setIsServicesHovered(false)}
+          >
+            <button className="flex items-center gap-1 font-medium transition-colors hover:text-primary text-foreground outline-none py-2">
+              Servicios
+              <ChevronDown
+                className={`w-4 h-4 transition-transform duration-200 ${
+                  isServicesHovered ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {/* Dropdown Content */}
+            <div
+              className={`absolute top-full left-0 pt-2 transition-all duration-200 ${
+                isServicesHovered
+                  ? "opacity-100 visible translate-y-0"
+                  : "opacity-0 invisible -translate-y-2"
+              }`}
             >
-              {link.label}
-            </a>
-          ))}
+              <div className="bg-card border border-border rounded-lg shadow-lg py-2 min-w-[200px]">
+                {serviceLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    className="block px-4 py-2.5 text-sm font-medium text-foreground hover:bg-muted hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <a
+            href="#ventajas"
+            className="font-medium transition-colors hover:text-primary text-foreground"
+          >
+            Ventajas
+          </a>
+
+          <Link
+            to="/contacto"
+            className="font-medium transition-colors hover:text-primary text-foreground"
+          >
+            Contacto
+          </Link>
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
           <Button variant="hero" size="lg" asChild>
-            <a href="/contacto">
+            <Link to="/contacto">
               <Phone className="w-4 h-4" />
               Solicita Presupuesto
-            </a>
+            </Link>
           </Button>
         </div>
 
@@ -76,22 +115,57 @@ export const Header = () => {
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-full sm:w-80">
-            <nav className="flex flex-col gap-6 mt-8">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+            <nav className="flex flex-col gap-4 mt-8">
+              {/* Mobile Servicios Accordion */}
+              <div>
+                <button
+                  onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                  className="flex items-center justify-between w-full text-lg font-medium text-foreground hover:text-primary transition-colors"
                 >
-                  {link.label}
-                </a>
-              ))}
+                  Servicios
+                  <ChevronDown
+                    className={`w-5 h-5 transition-transform ${
+                      isMobileServicesOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+                {isMobileServicesOpen && (
+                  <div className="mt-2 ml-4 flex flex-col gap-3">
+                    {serviceLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        to={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className="text-base text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <a
+                href="#ventajas"
+                onClick={() => setIsOpen(false)}
+                className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+              >
+                Ventajas
+              </a>
+
+              <Link
+                to="/contacto"
+                onClick={() => setIsOpen(false)}
+                className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+              >
+                Contacto
+              </Link>
+
               <Button variant="hero" size="lg" className="mt-4" asChild>
-                <a href="#contacto" onClick={() => setIsOpen(false)}>
+                <Link to="/contacto" onClick={() => setIsOpen(false)}>
                   <Phone className="w-4 h-4" />
                   Solicita Presupuesto
-                </a>
+                </Link>
               </Button>
             </nav>
           </SheetContent>

@@ -1,18 +1,12 @@
-import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Linkedin } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
 const footerLinks = {
   servicios: [
-    { label: "Ventanas de PVC", href: "#servicios" },
-    { label: "Ventanas de Aluminio", href: "#servicios" },
-    { label: "Cerramientos", href: "#servicios" },
-    { label: "Mamparas de Ducha", href: "#servicios" },
-  ],
-  empresa: [
-    { label: "Sobre Nosotros", href: "#" },
-    { label: "Proyectos", href: "#" },
-    { label: "Blog", href: "#" },
-    { label: "Contacto", href: "#contacto" },
+    { label: "Vidrios / Espejos", href: "/vidrios" },
+    { label: "PVC / Aluminio", href: "/pvc-aluminio" },
+    { label: "Mámparas de Baño", href: "/mamparas" },
   ],
   legal: [
     { label: "Aviso Legal", href: "#" },
@@ -42,21 +36,11 @@ export const Footer = () => {
               />
             </div>
             <p className="text-sm mb-6">
-              Más de 30 años instalando calidad y confort en hogares de Las Rozas y alrededores.
+              Más de 45 años instalando calidad y confort en hogares de Las Rozas y alrededores.
             </p>
-            <div className="space-y-3 text-sm">
-              <a href="tel:+34916370000" className="flex items-center gap-2 hover:text-primary-foreground transition-colors">
-                <Phone className="w-4 h-4" />
-                916 37 00 00
-              </a>
-              <a href="mailto:info@cristalerialasrozas.es" className="flex items-center gap-2 hover:text-primary-foreground transition-colors">
-                <Mail className="w-4 h-4" />
-                info@cristalerialasrozas.es
-              </a>
-              <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 mt-0.5" />
-                <span>Las Rozas de Madrid</span>
-              </div>
+            <div className="flex items-start gap-2 text-sm">
+              <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
+              <span>Las Rozas de Madrid</span>
             </div>
           </div>
 
@@ -66,32 +50,52 @@ export const Footer = () => {
             <ul className="space-y-2 text-sm">
               {footerLinks.servicios.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="hover:text-primary-foreground transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Company */}
+          {/* Contact Info */}
           <div>
-            <h4 className="font-semibold text-primary-foreground mb-4">Empresa</h4>
-            <ul className="space-y-2 text-sm">
-              {footerLinks.empresa.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="hover:text-primary-foreground transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <h4 className="font-semibold text-primary-foreground mb-4">Contacto</h4>
+            <div className="space-y-3 text-sm">
+              <div>
+                <p className="text-primary-foreground/60 text-xs mb-1">Móvil / WhatsApp</p>
+                <a href="tel:+34633039377" className="flex items-center gap-2 hover:text-primary-foreground transition-colors">
+                  <Phone className="w-4 h-4" />
+                  633 039 377
+                </a>
+                <a href="tel:+34622955643" className="flex items-center gap-2 hover:text-primary-foreground transition-colors mt-1">
+                  <Phone className="w-4 h-4" />
+                  622 955 643
+                </a>
+              </div>
+              <div>
+                <p className="text-primary-foreground/60 text-xs mb-1">Teléfono Fijo</p>
+                <a href="tel:+34916373333" className="flex items-center gap-2 hover:text-primary-foreground transition-colors">
+                  <Phone className="w-4 h-4" />
+                  916 373 333
+                </a>
+              </div>
+              <a href="mailto:cristalerialasrozas@hotmail.com" className="flex items-center gap-2 hover:text-primary-foreground transition-colors">
+                <Mail className="w-4 h-4 shrink-0" />
+                <span className="break-all">cristalerialasrozas@hotmail.com</span>
+              </a>
+              <div className="flex items-start gap-2 pt-2">
+                <Clock className="w-4 h-4 mt-0.5 shrink-0" />
+                <div>
+                  <p className="text-primary-foreground/60 text-xs mb-1">Horario</p>
+                  <p>L-V: 09:00 - 14:00</p>
+                  <p>L-V: 17:00 - 20:00</p>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Legal & Social */}
