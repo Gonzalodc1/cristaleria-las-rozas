@@ -34,6 +34,10 @@ export const Hero = () => {
           src={heroImage}
           alt="Cristalería profesional - Vidrios y ventanas"
           className="w-full h-full object-cover"
+          width={1920}
+          height={1080}
+          fetchPriority="high"
+          loading="eager"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
       </div>

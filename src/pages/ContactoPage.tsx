@@ -125,17 +125,30 @@ const ContactoPage = () => {
                     {/* Google Map */}
                     <div className="space-y-4">
                         <h2 className="text-2xl font-bold text-center">Nuestra Ubicación</h2>
-                        <p className="text-muted-foreground text-center">Ven a visitarnos a nuestra exposición en Las Rozas</p>
+                        <p className="text-muted-foreground text-center">
+                            C. Reina Mercedes, 5, 28231 Las Rozas de Madrid, Madrid
+                        </p>
                         <div className="w-full h-[400px] rounded-2xl overflow-hidden shadow-card border border-border bg-muted">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12135.536789429432!2d-3.8749454!3d40.4913745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4183e601567ad1%3A0x628373844f234907!2sCristaler%C3%ADa%20Las%20Rozas!5e0!3m2!1ses!2ses!4v1709123456789!5m2!1ses!2ses"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3032.5567364665494!2d-3.8771342!3d40.4913745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4183e601567ad1%3A0x628373844f234907!2sCristaler%C3%ADa%20Las%20Rozas!5e0!3m2!1ses!2ses!4v1716300000000!5m2!1ses!2ses"
                                 width="100%"
                                 height="100%"
                                 style={{ border: 0 }}
                                 allowFullScreen
                                 loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"
+                                title="Ubicación Cristalería Las Rozas - C. Reina Mercedes, 5"
                             />
+                        </div>
+                        <div className="text-center">
+                            <a
+                                href="https://maps.app.goo.gl/uX3LhR8Z2qQ5o1s8A"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-primary hover:underline text-sm font-medium"
+                            >
+                                Abrir en Google Maps →
+                            </a>
                         </div>
                     </div>
                 </section>

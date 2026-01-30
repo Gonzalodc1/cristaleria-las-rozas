@@ -1,6 +1,6 @@
 import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
-import logo from "@/assets/logo.png";
+
 
 const footerLinks = {
   servicios: [
@@ -30,9 +30,11 @@ export const Footer = () => {
           <div className="lg:col-span-1">
             <div className="mb-4">
               <img
-                src={logo}
+                src="/favicon-removebg-preview.png"
                 alt="Cristalería Las Rozas - Aluminios y PVC"
-                className="h-14 w-auto brightness-200 invert mix-blend-screen"
+                width={200}
+                height={56}
+                className="h-14 w-auto"
               />
             </div>
             <p className="text-sm mb-6">
