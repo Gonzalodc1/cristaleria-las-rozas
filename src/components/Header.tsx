@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Menu, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import logo from "@/assets/logo.png";
 
 const serviceLinks = [
   { href: "/vidrios", label: "Vidrios / Espejos" },
@@ -37,7 +36,7 @@ export const Header = () => {
         {/* Logo */}
         <Link to="/" className="flex items-center">
           <img
-            src={logo}
+            src="/favicon.png"
             alt="Cristalería Las Rozas"
             className="h-10 md:h-12 w-auto"
           />
