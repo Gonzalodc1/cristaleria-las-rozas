@@ -20,17 +20,41 @@ const ContactoPage = () => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Create mailto link with form data
-        const subject = encodeURIComponent(`Consulta de ${formData.nombre}`);
-        const body = encodeURIComponent(`Nombre: ${formData.nombre}\nEmail: ${formData.email}\n\nMensaje:\n${formData.mensaje}`);
-        window.location.href = `mailto:cristalerialasrozas@hotmail.com?subject=${subject}&body=${body}`;
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    access_key: "bd523c78-3977-4bdb-940e-b6af9c317806", // Reemplazar con tu clave de Web3Forms
+                    name: formData.nombre,
+                    email: formData.email,
+                    message: formData.mensaje,
+                    subject: `Nueva consulta de ${formData.nombre} - Cristalería Las Rozas`,
+                }),
+            });
 
-        toast({
-            title: "Redirigiendo a tu cliente de email",
-            description: "Se abrirá tu aplicación de correo para enviar el mensaje.",
-        });
+            const result = await response.json();
 
-        setIsSubmitting(false);
+            if (result.success) {
+                toast({
+                    title: "¡Mensaje enviado!",
+                    description: "Te responderemos lo antes posible.",
+                });
+                setFormData({ nombre: "", email: "", mensaje: "" });
+            } else {
+                throw new Error("Error al enviar");
+            }
+        } catch (error) {
+            toast({
+                title: "Error al enviar",
+                description: "Por favor, contacta por WhatsApp o llama directamente.",
+                variant: "destructive",
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -115,8 +139,17 @@ const ContactoPage = () => {
                                     className="w-full h-14 rounded-xl"
                                     disabled={isSubmitting}
                                 >
-                                    <Send className="w-5 h-5 mr-2" />
-                                    Enviar Mensaje
+                                    {isSubmitting ? (
+                                        <>
+                                            <span className="w-5 h-5 mr-2 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                                            Enviando...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Send className="w-5 h-5 mr-2" />
+                                            Enviar Mensaje
+                                        </>
+                                    )}
                                 </Button>
                             </form>
                         </div>
