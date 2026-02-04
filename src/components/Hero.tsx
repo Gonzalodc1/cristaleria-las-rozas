@@ -8,19 +8,19 @@ const panels = [
   {
     title: "Vidrios",
     icon: Layers,
-    items: ["Espejos", "Lacobel", "Vidrios de importación", "Barandillas de cristal"],
+    items: ["Espejos a medida", "Dobles acristalamientos", "Lacobel (vidrios lacados)", "Vidrios de seguridad", "Vidrios de importación", "Barandillas infinity", "Cortinas de cristal"],
     href: "/vidrios",
   },
   {
     title: "PVC / Aluminio",
     icon: Home,
-    items: ["Aislamiento Térmico (RPT)", "Vidrio Bajo Emisivo", "Apertura Oscilobatiente", "Vidrio de Seguridad", "Variedad de Colores (RAL)", "Garantía 10 años"],
+    items: ["Kömmerling", "Aislamiento térmico (RPT)", "Guardian sun", "Apertura oscilobatiente", "Cierre 5 puntos", "Persianas eléctricas de seguridad", "Garantía de 15 años"],
     href: "/pvc-aluminio",
   },
   {
     title: "Mámparas de Baño",
     icon: ShowerHead,
-    items: ["Vidrio Templado de Seguridad", "Tratamiento Antical", "Perfiles Mínimos / Sin Perfiles", "Aperturas Correderas y Abatibles", "Diseño a Medida", "Estanqueidad Garantizada"],
+    items: ["Bañera", "Ducha", "Diseño a medida"],
     href: "/mamparas",
   },
 ];
